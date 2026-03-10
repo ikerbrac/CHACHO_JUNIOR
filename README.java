@@ -7,7 +7,6 @@ public class Main {
         double[] p = {10.5, 20.0, 5.75, 100.0};
         int[] c = {2, 1, 5, 1};
         int[] t = {1, 2, 1, 2};
-        //maldita sea
         double tt = 0;
 
         for (int i = 0; i < p.length; i++) {
