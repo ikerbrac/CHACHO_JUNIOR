@@ -1,44 +1,35 @@
 import java.util.Scanner;
 
-
 public class Main {
     public static void main(String[] args) {
-        // Datos de entrada: precio, cantidad, tipo de producto (1: Alimento, 2: Electronica)
-        double[] p = {10.5, 20.0, 5.75, 100.0};
-        int[] c = {2, 1, 5, 1};
-        int[] t = {1, 2, 1, 2};
-        //maldita sea
-        double tt = 0;
+        double[] precios = {10.5, 20.0, 5.75, 100.0};
+        int[] cantidades = {2, 1, 5, 1};
+        int[] tipos = {1, 2, 1, 2};
 
-        for (int i = 0; i < p.length; i++) {
-            double sub = p[i] * c[i];
-            double imp = 0;
+        double totalFinal = 0;
+        for (int i = 0; i < precios.length; i++) {
+            double subtotal = precios[i] * cantidades[i];
+            double impuesto = 0;
 
-            // Calcular impuesto segun tipo
-            if (t[i] == 1) {
-                imp = sub * 0.04; // IVA Superreducido
-            } else if (t[i] == 2) {
-                imp = sub * 0.21; // IVA General
+            if (tipos[i] == 1) {
+                impuesto = subtotal * 0.04;
+            } else if (tipos[i] == 2) {
+                impuesto = subtotal * 0.21;
             }
+            double resultadoItem = subtotal + impuesto;
 
-            double res = sub + imp;
-            
-            // Descuento si la cantidad es grande
-            if (c[i] > 3) {
-                res = res - (res * 0.1);
+            if (cantidades[i] > 3) {
+                resultadoItem = resultadoItem - (resultadoItem * 0.1);
             }
-
-            System.out.println("Item " + i + ": " + res);
-            tt += res;
+            System.out.println("Item " + i + ": " + resultadoItem);
+            totalFinal += resultadoItem;
         }
+        System.out.println("TOTAL FINAL: " + totalFinal);
 
-        System.out.println("TOTAL FINAL: " + tt);
-        
-        // Parte interactiva innecesariamente mezclada
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Confirmar pedido? (s/n)");
-        String s = sc.nextLine();
-        if (s.equals("s")) {
+        String respuesta = sc.nextLine();
+        if (respuesta.equals("s")) {
             System.out.println("Guardando...");
         }
     }
